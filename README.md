@@ -71,7 +71,7 @@ colcon build --packages-select delta2g
 sudo chmod 666 /dev/ttyUSB0
 ros2 run delta2g talker
 
-rviz2 -d /ros_ws/src/Delta-2G-LiDAR-Driver/Software/ros2_ws/Delta2G.rviz
+rviz2 -d ~/ros_ws/src/Delta-2G-LiDAR-Driver/Software/ros2_ws/Delta2G.rviz
 ```
 
 Optionally, inspect the scan data:
