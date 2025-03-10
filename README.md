@@ -57,22 +57,27 @@ A simple ROS2 LaserScan publisher was written based on the Python driver and was
 
 The driver publishes a fully filled LaserScan topic whenever a full scan (360 degrees) is received, including the signal quality information. The frame ID for the published LaserScan topic is **delta2g** but this can easily be changed in the **LiDARConnectionROS.py** file.
 
-To run the driver, first build the workspace using colcon:
+If using Windows, run a Ubuntu VM with ROS2 (e.g. Jazzy).
 
-```bash
+To run the driver:
+
+```
+mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws/src
+git clone https://github.com/kaiaai/Delta-2G-LiDAR-Driver/
+cd ~/ros2_ws
 colcon build --packages-select delta2g
-```
-
-Followed by setting up the workspace and running the talker node:
-```bash
 . install/setup.bash
+sudo chmod 666 /dev/ttyUSB0
 ros2 run delta2g talker
+
+rviz2 -d /ros_ws/src/Delta-2G-LiDAR-Driver/Software/ros2_ws/Delta2G.rviz
 ```
 
-For faster testing, a configuration file for RVIZ is also included in the root folder, which can be used to configure RVIZ from the launch command:
-
-```bash
-rviz2 -d Delta2G.rviz
+Optionally, inspect the scan data:
+```
+ros2 topic echo /detla2g
+ros2 topic hz /detla2g
 ```
 
 More details on simple Python publisher and subscriber nodes in ROS2 can be found [here](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html).
